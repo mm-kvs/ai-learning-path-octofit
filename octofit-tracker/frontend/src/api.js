@@ -1,6 +1,12 @@
-export const apiBase = import.meta.env.VITE_CODESPACE_NAME
-  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev`
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+
+export const apiBase = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev`
   : 'http://localhost:8000'
+
+export function buildApiUrl(path) {
+  return `${apiBase}${path.startsWith('/') ? path : `/${path}`}`
+}
 
 export async function parseJsonResponse(response) {
   if (!response.ok) {
@@ -8,4 +14,13 @@ export async function parseJsonResponse(response) {
   }
 
   return response.json()
+}
+
+export function getResourceItems(data) {
+  if (Array.isArray(data)) return data
+  if (Array.isArray(data?.results)) return data.results
+  if (Array.isArray(data?.items)) return data.items
+  if (Array.isArray(data?.data)) return data.data
+
+  return []
 }

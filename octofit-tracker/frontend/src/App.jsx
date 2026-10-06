@@ -1,4 +1,4 @@
-import { NavLink, Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { BrowserRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import Activities from './components/Activities'
 import Leaderboard from './components/Leaderboard'
 import Teams from './components/Teams'
@@ -8,7 +8,7 @@ import './App.css'
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="app-shell">
         <nav className="app-nav">
           <NavLink to="/users">Users</NavLink>
@@ -26,7 +26,7 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   )
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getResourceItems } from '../api'
 
 function getPrimaryLabel(item) {
   return item.displayName || item.name || item.title || item.username || item.activityType || item._id
@@ -14,7 +15,7 @@ export default function ResourceList({ title, loadItems }) {
     loadItems()
       .then((data) => {
         if (!isCurrent) return
-        setItems(Array.isArray(data) ? data : [])
+        setItems(getResourceItems(data))
         setStatus('ready')
       })
       .catch(() => {
