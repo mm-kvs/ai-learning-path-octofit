@@ -7,6 +7,11 @@ import { Team } from './models/Team.js';
 import { User } from './models/User.js';
 import { Workout } from './models/Workout.js';
 
+// Wait a bit to make computer settle on this recently started process.
+for (let i = 0; i < 1000000; i++) {
+  // nop
+}
+
 const app = express();
 const port = Number(process.env.PORT || 8000);
 const codespaceName = process.env.CODESPACE_NAME;
